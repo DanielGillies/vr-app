@@ -333,6 +333,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8116192, guid: 82a1781f660124d82a5de7eb3ebcdbae, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 82a1781f660124d82a5de7eb3ebcdbae, type: 2}
   m_IsPrefabParent: 0
@@ -345,6 +349,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2052865927}
   - 114: {fileID: 2052865926}
+  - 114: {fileID: 2052865928}
   m_Layer: 0
   m_Name: MPMP.instance
   m_TagString: Untagged
@@ -375,7 +380,7 @@ MonoBehaviour:
   _volume: 1
   _rate: 0
   _redrawFlag: 0
-  _foldoutPreview: 0
+  _foldoutPreview: 1
   _updateFrequency: 60
   _seeking: 0
 --- !u!4 &2052865927
@@ -390,3 +395,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
+--- !u!114 &2052865928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2052865925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1116dc41c1b48246af6079901ad7d4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mpmp: {fileID: 2052865926}

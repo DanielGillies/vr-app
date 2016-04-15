@@ -228,8 +228,6 @@ namespace monoflow {
 	    {
 
             // Debug.Log("::::::::::::::::::::::::::::::::::::::");
-            DebugConsole.Log("GOT TO THE LOAD", "normal");
-                Load();
 
 #if UNITY_EDITOR
             EditorPlayMode.PlayModeChanged += OnPlayModeChanged;
