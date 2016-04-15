@@ -99,7 +99,7 @@ PlayerSettings:
   productGUID: eb9f493bef165644eba46ba206f7ebcc
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 9
-  AndroidPreferredInstallLocation: 1
+  AndroidPreferredInstallLocation: 0
   aotOptions: 
   apiCompatibilityLevel: 2
   stripEngineCode: 1

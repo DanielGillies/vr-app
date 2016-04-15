@@ -26,8 +26,10 @@ namespace monoflow
         public void DoFlip()
         {
 
-        #if !UNITY_ANDROID || UNITY_EDITOR
             _t = gameObject.transform;
+
+#if !UNITY_ANDROID || UNITY_EDITOR
+
             switch (axisMode)
             {
                 case Axis.X:
@@ -40,12 +42,29 @@ namespace monoflow
                     _t.localScale = new Vector3(_t.localScale.x, _t.localScale.y , _t.localScale.z * -1f);
                     break;
             }
-          //  _t.localScale = new Vector3(_t.localScale.x, _t.localScale.y * -1f, _t.localScale.z);
-        #endif
+            //  _t.localScale = new Vector3(_t.localScale.x, _t.localScale.y * -1f, _t.localScale.z);
+#else
+            //
+
+              switch (axisMode)
+            {
+                case Axis.X:
+                    _t.localScale = new Vector3(_t.localScale.x * -1f, _t.localScale.y , _t.localScale.z);
+                    break;
+            /*
+                case Axis.Y:
+                    _t.localScale = new Vector3(_t.localScale.x, _t.localScale.y * -1f, _t.localScale.z);
+                    break;
+            */
+                case Axis.Z:
+                    _t.localScale = new Vector3(_t.localScale.x, _t.localScale.y , _t.localScale.z * -1f);
+                    break;
+            }
+
+#endif
         }
 
 
     }
 
 }
-
