@@ -495,6 +495,7 @@ public class Cardboard : MonoBehaviour {
 
   void Start() {
     UILayerEnabled = true;
+    Recenter();
   }
 
   void AddCardboardCamera() {

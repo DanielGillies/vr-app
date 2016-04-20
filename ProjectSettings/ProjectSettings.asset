@@ -6,7 +6,7 @@ PlayerSettings:
   serializedVersion: 8
   AndroidProfiler: 0
   defaultScreenOrientation: 3
-  targetDevice: 2
+  targetDevice: 0
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: SKULLY, Inc.

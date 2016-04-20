@@ -11,7 +11,7 @@ using System.Collections;
 
 	//This is the method that should be called when mpmp fires OnInit event
 	public void MyOnInit(monoflow.MPMP mpmp){
-		DebugConsole.Log("GOT TO THE LOAD2", "normal");
+		// DebugConsole.Log("GOT TO THE LOAD2", "normal");
 		mpmp.Load();//mpmp must have a valid videopath
 	}
 
