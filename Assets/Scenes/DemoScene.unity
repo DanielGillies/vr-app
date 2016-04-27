@@ -85,6 +85,12 @@ NavMeshSettings:
     cellSize: 0.16666666
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &146131165 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11400008, guid: b8b03d395f5734e98af91ccf44f9bf47,
+    type: 2}
+  m_PrefabInternal: {fileID: 437064765}
+  m_Script: {fileID: 11500000, guid: f1578549c7fcc4f6fa1b063992091672, type: 3}
 --- !u!1 &159634548
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +279,22 @@ Prefab:
     - target: {fileID: 127676, guid: cc193eaf28b7e49139157c3278f1882f, type: 2}
       propertyPath: m_Name
       value: Los Angeles
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427878, guid: cc193eaf28b7e49139157c3278f1882f, type: 2}
+      propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427878, guid: cc193eaf28b7e49139157c3278f1882f, type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11413428, guid: cc193eaf28b7e49139157c3278f1882f, type: 2}
+      propertyPath: head
+      value: 
+      objectReference: {fileID: 146131165}
+    - target: {fileID: 11413428, guid: cc193eaf28b7e49139157c3278f1882f, type: 2}
+      propertyPath: sceneNum
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cc193eaf28b7e49139157c3278f1882f, type: 2}
@@ -1635,6 +1657,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6d9412aff759420192d8dcf33f969bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  head: {fileID: 146131165}
+  sceneNum: 1
 --- !u!114 &1721723937
 MonoBehaviour:
   m_ObjectHideFlags: 0
