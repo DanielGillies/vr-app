@@ -14,6 +14,7 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [RequireComponent (typeof(Collider))]
 public class Teleport : MonoBehaviour, ICardboardGazeResponder
@@ -25,6 +26,8 @@ public class Teleport : MonoBehaviour, ICardboardGazeResponder
 	private float delay = 0.0f;
 	public int sceneNum;
 	private LoadOnClick sceneLoader;
+	
+	// public Image timerRadian;
 
 	void Start ()
 	{
@@ -32,6 +35,7 @@ public class Teleport : MonoBehaviour, ICardboardGazeResponder
 		startingPosition = transform.localPosition;
 		smallThumb = new Vector3 (.2051785f, .2051785f, .2051785f);
 		largeThumb = new Vector3 (.3F, .3F, .3F);
+		// timerRadian.fillAmount = 0f;
 		SetGazedAt (false);
 	}
 
@@ -43,9 +47,10 @@ public class Teleport : MonoBehaviour, ICardboardGazeResponder
 		}
 		RaycastHit hit;
 		bool isLookedAt = GetComponent<Collider>().Raycast(head.Gaze, out hit, Mathf.Infinity);
-		Debug.Log(isLookedAt);
-		if (!isLookedAt) { delay = Time.time + 2.0f; }
-		if (isLookedAt && Time.time > delay) {
+		if (!isLookedAt) {
+			delay = Time.time + 2.0f; 
+			// timerRadian.fillAmount = 0f;
+		} else if (isLookedAt && Time.time > delay) {
 			sceneLoader.LoadScene (sceneNum);
 		}
 	}

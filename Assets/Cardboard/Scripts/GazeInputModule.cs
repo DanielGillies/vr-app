@@ -22,6 +22,7 @@
 
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /// @ingroup Scripts
 /// This script provides an implemention of Unity's `BaseInputModule` class, so
@@ -66,6 +67,10 @@ public class GazeInputModule : BaseInputModule {
   public static ICardboardGazePointer cardboardPointer;
   // Active state
   private bool isActive = false;
+  
+  public Image timerRadian;
+  
+  public float time;
 
   /// @cond
   public override bool ShouldActivateModule() {
@@ -80,6 +85,7 @@ public class GazeInputModule : BaseInputModule {
       if (cardboardPointer != null) {
         if (isActive) {
           cardboardPointer.OnGazeEnabled();
+          timerRadian.fillAmount = 0f;
         }
       }
     }
@@ -173,9 +179,13 @@ public class GazeInputModule : BaseInputModule {
 
     if (gazeObject == previousGazedObject) {
       if (gazeObject != null) {
+        if (gazeObject.tag == "MenuButton") {
+          timerRadian.fillAmount += Time.deltaTime / time;
+        }
         cardboardPointer.OnGazeStay(camera, gazeObject, intersectionPosition, isInteractive);
       }
     } else {
+      timerRadian.fillAmount = 0f;
       if (previousGazedObject != null) {
         cardboardPointer.OnGazeExit(camera, previousGazedObject);
       }
