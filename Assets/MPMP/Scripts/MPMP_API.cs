@@ -24,7 +24,7 @@ namespace monoflow
         /// <summary>
         /// Internal types of events from the native site 
         /// </summary>
-        public enum Events { LOAD, LOADED, PLAY, PAUSE, STOP, DESTROY, ERROR, PLAYBACKCOMPLETED, AVF_PIXELBUFFER_ERROR, TEXTURE_CHANGED };
+        public enum Events { LOAD, LOADED, PLAY, PAUSE, DESTROY, ERROR, PLAYBACKCOMPLETED,AVF_PIXELBUFFER_ERROR, TEXTURE_CHANGED };
 
         /// <summary>
         /// Event that is called after the native part is initialized
@@ -50,12 +50,6 @@ namespace monoflow
         /// Event is called when MPMP starts to play
         /// </summary>
         public Action<MPMP> OnPlay;
-
-
-        /// <summary>
-        /// Event is called when MPMP stops the media
-        /// </summary>
-        public Action<MPMP> OnStop;
 
         /// <summary>
         /// Event is called when the MPMP instance is destroyed
@@ -93,14 +87,14 @@ namespace monoflow
         public void Load()
         {
             string filePath = GetFilePath(videoPath);
-            if (String.IsNullOrEmpty(filePath)) {
+            if (String.IsNullOrEmpty(filePath)){
                 Debug.LogWarning("Please check your video path:" + filePath);
             } else {
 
+            
 
-
-                if (isNVIDIA) {
-
+                if (isNVIDIA) { 
+                    
                     if (_videoTexture != null)
                     {
                         /*
@@ -118,39 +112,39 @@ namespace monoflow
 
                         DestroyImmediate(_videoTexture);
                         _videoTexture = null;
-
-                    }
-                    // _loadLock = true;
+                                
+                     }
+                   // _loadLock = true;
                 }//NVIDIA
 
                 Pause();
-                // _UpdateIsPlaying();
-                // _UpdateIsPaused();
+               // _UpdateIsPlaying();
+               // _UpdateIsPaused();
 
                 _loadLock = true;
                 Load(_id, filePath);
                 _UpdateIsLoading();
             }
-
+           
         }
 
         Texture2D texCopy;
 
         private void _RestoreMaterialState()
         {
-            // return;
-            // Debug.Log("_RestoreMaterialState:"+ _videoDefaultTexture.name);
+           // return;
+           // Debug.Log("_RestoreMaterialState:"+ _videoDefaultTexture.name);
             if (_videoMaterial == null) return;
-            if (!_hasTextureProperty) return;
-            _videoMaterial.SetTexture(texturePropertyName, _videoDefaultTexture);
+            if (!_hasTextureProperty) return;            
+            _videoMaterial.SetTexture(texturePropertyName, _videoDefaultTexture);                
         }
         private void _StoreMaterialState()
         {
-            // return;
+           // return;
             _videoDefaultTexture = null;
             if (_videoMaterial == null) return;
             if (!_hasTextureProperty) return;
-            _videoDefaultTexture = _videoMaterial.GetTexture(texturePropertyName);
+            _videoDefaultTexture = _videoMaterial.GetTexture(texturePropertyName);        
         }
 
         /// <summary>
@@ -159,8 +153,8 @@ namespace monoflow
         /// <param name="path"></param>
         public void Load(string path) {
             videoPath = path;
-            // Pause();
-            Load();
+           // Pause();
+            Load();           
         }
 
         /// <summary>
@@ -169,9 +163,9 @@ namespace monoflow
         public void Play()
         {
             if (_loadLock) return;
-           // _isStopped = false;
             Play(_id);
-            _UpdateStatus();
+            _UpdateIsPlaying();
+            _UpdateIsPaused();
         }
 
         /// <summary>
@@ -180,28 +174,12 @@ namespace monoflow
         public void Pause()
         {
             if (_loadLock) return;
-           // if (_isStopped) return;
             Pause(_id);
-            _UpdateStatus();
-        }
-
-        /// <summary>
-        /// Stop the media. (The media is paused and seek to 0 )
-        /// </summary>
-        public void Stop()
-        {
-            if (_loadLock) return;
-            Stop(_id);
-            _UpdateStatus();
-        }
-
-        private void _UpdateStatus()
-        {
-            _UpdateIsPlaying();
             _UpdateIsPaused();
-            _UpdateIsStopped();
-            _UpdateIsLoading();
+            _UpdateIsPlaying();
+           
         }
+
 
         /// <summary>
         /// Media starts playing automatically when loaded
@@ -232,19 +210,10 @@ namespace monoflow
         public float GetSeek(bool normalized)
         {
             // _seek = (float)GetCurrentPosition(_id);
-            return (float)GetCurrentPosition(normalized);
-
+            return (float)GetCurrentPosition(normalized);                       
+           
         }
 
-        /// <summary>
-        /// seek property is the same as the methods SeekTo(time, normalized=true) and GetSeek(true)
-        /// <para/>
-        /// </summary>
-        public float seek
-        {
-            get { return (float)GetCurrentPosition(true); }
-            set { SeekTo(value, true); }
-        }
 
         /// <summary>
         /// Seek to a point in time in sec
@@ -254,7 +223,7 @@ namespace monoflow
         ///<param name="t"></param>
         /// </summary>
         public void SeekTo(float t)
-        {         
+        {
             SeekTo(t, false);
         }
 
@@ -272,17 +241,15 @@ namespace monoflow
         {
             // seek = t;   
             if (_loadLock) return;
-            if (_isStopped) return;
-
             float tValue = t;
-            if (normalized) tValue = Mathf.Clamp(tValue, 0.0f, 1.0f);
+            if(normalized) tValue = Mathf.Clamp(tValue, 0.0f, 1.0f);
             bool isChanged = false;
-
+           
             isChanged = GetSeek(normalized) != tValue;
-
+                        
             if (isChanged)
             {
-                // Debug.Log(String.Format("SeekTo:{0}, {1}" , cv, tValue));
+               // Debug.Log(String.Format("SeekTo:{0}, {1}" , cv, tValue));
                 _seek = tValue;
                 //Debug.Log("SeekTo:" + _seek);            
 #if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX || UNITY_IPHONE
@@ -303,11 +270,11 @@ namespace monoflow
         /// <param name="status"></param>
         public void SetSeeking(bool status)
         {
-            // Debug.Log("SetSeeking:" + status);
+           // Debug.Log("SetSeeking:" + status);
             _seeking = status;
         }
 
-
+  
 
         /// <summary>
         /// get or set the current volume of the media
@@ -316,13 +283,13 @@ namespace monoflow
         public float volume
         {
             get {
-                // _volume = (float)GetCurrentVolume(_id);
+               // _volume = (float)GetCurrentVolume(_id);
                 return _volume;
             }
             set
             {
                 if (_loadLock) return;
-                float tValue = Mathf.Clamp(value, 0.0f, 1.0f);
+                float tValue = Mathf.Clamp(value,0.0f,1.0f);
                 bool isChanged = false;
                 isChanged = _volume != tValue;
                 if (isChanged)
@@ -364,7 +331,7 @@ namespace monoflow
                 }
             }
         }
-
+       
 
         /// <summary>
         /// Get or set the looping of the media
@@ -397,7 +364,7 @@ namespace monoflow
         {
             get
             {
-                // _rate = GetPlaybackRate(_id);
+               // _rate = GetPlaybackRate(_id);
                 //Debug.Log("GetPlaybackRate:" + _rate);
                 return _rate;
             }
@@ -436,11 +403,11 @@ namespace monoflow
         public double GetCurrentPosition(bool normalized)
         {
             if (normalized) {
-                return _currentPositionNormalized;
+                return  _currentPositionNormalized;
             } else {
                 return _currentPosition;
             }
-            // return _currentPosition;
+           // return _currentPosition;
         }
 
         private double _currentPosition;
@@ -469,7 +436,7 @@ namespace monoflow
         private void _UpdateDuration()
         {
             //Internal call to plugin
-            _duration = GetDuration(_id);
+            _duration =  GetDuration(_id);
         }
 
         /// <summary>
@@ -501,19 +468,6 @@ namespace monoflow
             //Internal call to plugin
             _isPaused = IsPaused(_id);
         }
-
-
-        public bool IsStopped()
-        {       
-            return _isStopped;
-        }
-        private bool _isStopped;
-        private void _UpdateIsStopped()
-        {
-            //Internal call to plugin
-            _isStopped = IsStopped(_id);
-        }
-       
 
         /// <summary>
         /// Check if the media is loading
@@ -660,25 +614,6 @@ namespace monoflow
             return _updateFrequency;
         }
 
-        /// <summary>
-        /// Set the index of the current selected audio track
-        /// changes will be only relevant before video is loaded
-        /// </summary>
-        /// <param name="index"></param>
-        public void SetAudioTrack(int index)
-        {
-            SetAudioTrack(_id, (int)Mathf.Clamp(index, 0.0f, 8.0f)); 
-        }
-
-        /// <summary>
-        /// Check if an audio track at a given index is in the media that is loaded
-        /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
-        public bool HasAudioTrack(int index)
-        {
-            return HasAudioTrack(_id, (int)Mathf.Clamp(index, 0.0f, 8.0f));
-        }
 
         public bool HasHadPixelBufferError()
         {

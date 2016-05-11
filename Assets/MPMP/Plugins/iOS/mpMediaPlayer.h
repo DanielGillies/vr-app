@@ -35,7 +35,7 @@
 typedef void (*callbackFunc)(const char *);
 typedef void (*callbackFuncEvents)(int _id,int _evt);
 
-enum Events{LOAD,LOADED,PLAY,PAUSE,STOP,DESTROY,_ERROR,PLAYBACKCOMPLETED,AVF_PIXELBUFFER_ERROR,TEXTURE_CHANGED};
+enum Events{LOAD,LOADED,PLAY,PAUSE,DESTROY,_ERROR,PLAYBACKCOMPLETED,AVF_PIXELBUFFER_ERROR,TEXTURE_CHANGED};
 
 @protocol VideoPlayerDelegate<NSObject>
 - (void)onPlayerReady;
@@ -59,7 +59,6 @@ enum Events{LOAD,LOADED,PLAY,PAUSE,STOP,DESTROY,_ERROR,PLAYBACKCOMPLETED,AVF_PIX
 -(BOOL)load:(NSString*)filePath;
 -(void)play;
 -(void)pause;
--(void)stop;
 -(void)seekTo:(float) time;
 -(void)setAutoPlay:(BOOL)status;
 -(void)setVolume:(float) volume;

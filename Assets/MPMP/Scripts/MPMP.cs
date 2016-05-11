@@ -1,6 +1,6 @@
 /*
 * MPMP
-* Copyright ï¿½ 2016 Stefan Schlupek
+* Copyright © 2016 Stefan Schlupek
 * All rights reserved
 * info@monoflow.org
 */
@@ -362,13 +362,13 @@ namespace monoflow {
              GL.IssuePluginEvent(RenderEventFunc, _id);//Trigger the OpenGL Initializing
 #endif
 
-
+          
 
 #if (UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX || UNITY_IPHONE) && MPMP_DEBUG
             _ext2_SetLogCallback(_id,NativeCallbackFunc);
 #endif
 
-            _UpdateStatus();
+
 
             //Unity 5.3 bug with multiple instances of this script .Normal Update interval is used!
             //yield return StartCoroutine(_Update());
@@ -378,7 +378,7 @@ namespace monoflow {
 
             yield break;
             */
-        }
+	    }
 
         IEnumerator Start()
         {
@@ -438,22 +438,14 @@ namespace monoflow {
                             _UpdateDuration();                     
                             _UpdateTextureFromNative();                          
                             _UpdateIsLoading();
-                            _UpdateStatus();
                         });
                         _currentActions.Add(OnLoaded);
                         break;
                     case Events.PAUSE:
-                        _currentActions.Add((me) => { _UpdateStatus(); });
-                        _currentActions.Add(OnPause);                                         
+                        _currentActions.Add(OnPause);
                         break;
                     case Events.PLAY:
-                        _currentActions.Add((me) => { _UpdateStatus(); });
                         _currentActions.Add(OnPlay);
-                        break;
-                    case Events.STOP:
-                         _currentActions.Add((me) => { _UpdateStatus(); });
-                       // _UpdateStopped();
-                        _currentActions.Add(OnStop);
                         break;
                     case Events.DESTROY:
                         _currentActions.Add(OnDestroyed);
@@ -462,7 +454,6 @@ namespace monoflow {
                         _currentActions.Add(OnError);
                         break;
                     case Events.PLAYBACKCOMPLETED:
-                        _currentActions.Add((me) => { _UpdateStatus(); });
                         _currentActions.Add(OnPlaybackCompleted);
                         break;
                     case Events.AVF_PIXELBUFFER_ERROR:

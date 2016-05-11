@@ -89,9 +89,6 @@ namespace monoflow
         private static extern void Pause(int id);
 
         [DllImport(DLL_PATH)]
-        private static extern void Stop(int id);
-        
-        [DllImport(DLL_PATH)]
         private static extern void SetAutoPlay(int id, bool status);
 
         [DllImport(DLL_PATH)]
@@ -101,7 +98,7 @@ namespace monoflow
 
 		#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX || UNITY_IPHONE
 		[DllImport(DLL_PATH)]
-		private static extern void SeekToWithTolerance(int _id, float seek,float tolerance,bool normalized);
+		private static extern void SeekToWithTolerance(int _id, float seek,float tolerance);
 		#endif
 
         [DllImport(DLL_PATH)]
@@ -114,15 +111,9 @@ namespace monoflow
         private static extern void SetLooping(int id, bool status);
 
         [DllImport(DLL_PATH)]
-        private static extern void SetPlaybackRate(int id, float rate);
+        private static extern void SetPlaybackRate(int id, float rate);     
 
-        [DllImport(DLL_PATH)]
-        private static extern void SetAudioTrack(int id, int track);
-
-        [DllImport(DLL_PATH)]
-        private static extern bool HasAudioTrack(int id, int track);
-
-        [DllImport(DLL_PATH)]
+       [DllImport(DLL_PATH)]
         private static extern void Destroy(int id);    
 
         [DllImport(DLL_PATH)]
@@ -145,9 +136,6 @@ namespace monoflow
 
         [DllImport(DLL_PATH)]
         private static extern bool IsPaused(int id);
-
-        [DllImport(DLL_PATH)]
-        private static extern bool IsStopped(int id);
 
         [DllImport(DLL_PATH)]
         private static extern bool IsLoading(int id);

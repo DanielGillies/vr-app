@@ -17,7 +17,7 @@ namespace monoflow {
 
     public class MPMP_ugui_Element : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler, IDragHandler
     {
-        public enum Mode { LOAD, PLAY,PAUSE,STOP,SEEK,LOOP,AUTOPLAY,VOLUME,TEXTURE,PLAYBACKRATE ,TIME,PATH} 
+        public enum Mode { LOAD, PLAY,PAUSE,SEEK,LOOP,AUTOPLAY,VOLUME,TEXTURE,PLAYBACKRATE ,TIME,PATH} 
         public Mode mode;
         public monoflow.MPMP player;
         public Action OnSelected;
@@ -77,9 +77,6 @@ namespace monoflow {
                     break;
                 case Mode.PAUSE:
                     OnSelected = new Action(() => { player.Pause(); });
-                    break;
-                case Mode.STOP:
-                    OnSelected = new Action(() => { player.Stop(); });
                     break;
                 case Mode.SEEK:
                     _slider = GetComponent<Slider>();

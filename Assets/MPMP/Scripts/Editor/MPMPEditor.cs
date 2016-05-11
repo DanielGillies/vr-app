@@ -50,7 +50,6 @@ namespace monoflow
         private Color _pauseColor;
         private Color _playColor;
         private Color _loadColor;
-        private Color _stopColor;
         private Texture tex_preview;
         private bool _isOnWindows;
 
@@ -95,8 +94,7 @@ namespace monoflow
             tex_logo = Resources.Load(MPMP.LOGO64_NAME, typeof(Texture2D)) as Texture2D;
             _pauseColor = new Color(1.0f, 0.5f, 0f);
             _playColor = Color.green;
-            _loadColor = Color.blue;
-            _stopColor = Color.red;
+            _loadColor = Color.red;
 
             _isOnWindows = Application.platform.ToString().StartsWith("Windows");
 
@@ -152,10 +150,6 @@ namespace monoflow
 
             GUI.backgroundColor = _target.IsPaused() ? _pauseColor : Color.white;
             if (GUILayout.Button("Pause", GUILayout.Height(30f), GUILayout.Width(60f))) { _target.Pause(); }
-
-            GUI.backgroundColor = _target.IsStopped() ? _stopColor : Color.white;
-            if (GUILayout.Button("Stop", GUILayout.Height(30f), GUILayout.Width(60f))) { _target.Stop(); }
-
             GUI.backgroundColor = Color.white;
 
             GUILayout.FlexibleSpace();

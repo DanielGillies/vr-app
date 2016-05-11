@@ -58,18 +58,22 @@ public class Teleport : MonoBehaviour, ICardboardGazeResponder
 	public void SetGazedAt (bool gazedAt)
 	{
 		Renderer rend = GetComponent<Renderer> ();
-		Color color = rend.material.color;
-		if (gazedAt) {
-			color = Color.green;
-			color.a = .4f;
-			rend.transform.localScale = largeThumb;
-		} else {
-			delay = Time.time + 2.0f;
-			color = Color.red;
-			color.a = 1f;
-			rend.transform.localScale = smallThumb;
-		}
-		rend.material.color = color;
+			Color color = rend.material.color;
+			if (gazedAt) {
+				color = Color.green;
+				// CHECK IF IT IS A MENU ITEM OR THE BACK BUTTON FOR TRANSPARENCY
+				// if (rend.material.name.ToString() != "BackButton_M") {
+					// Debug.Log(rend.material.name.ToString());
+					color.a = .4f;
+				// }
+				rend.transform.localScale = largeThumb;
+			} else {
+				delay = Time.time + 2.0f;
+				color = Color.red;
+				color.a = 1f;
+				rend.transform.localScale = smallThumb;
+			}
+			rend.material.color = color;
 	}
 
 	public void Reset ()

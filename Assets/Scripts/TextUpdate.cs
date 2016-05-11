@@ -6,10 +6,13 @@ using UnityEngine.UI;
 public class TextUpdate : MonoBehaviour {
 	
 	Text mph;
+	Text distance;
 
 	// Use this for initialization
 	void Start () {
-		mph = GetComponent<Text>();
+		mph = transform.FindChild("MPH").GetComponent<Text>();
+		distance = transform.FindChild("GPS").GetComponent<Text>();
+		InvokeRepeating("DecreaseDistance", 8, 5F);
 		StartCoroutine(ChangeSpeed(15, 5, 5)); // :05 = 2, at :10 be at 14
 		StartCoroutine(ChangeSpeed(35, 5, 10)); // at :15 be at 35
 		StartCoroutine(ChangeSpeed(50, 5, 15)); // at :20 be at 50
@@ -20,17 +23,7 @@ public class TextUpdate : MonoBehaviour {
 		StartCoroutine(ChangeSpeed(48, 5, 35)); // at :40 be at 48
 		StartCoroutine(ChangeSpeed(50, 2, 40)); // at :45 be at 50
 		StartCoroutine(ChangeSpeed(53, 5, 45)); // at :50 be at 53
-
-	
 	}
-	
-	IEnumerator WaitFor() {
-		yield return new WaitForSeconds(2);
-		int temp = int.Parse(mph.text);
-		mph.text = (temp + 3).ToString();
-		StopCoroutine(WaitFor());
-		StartCoroutine(WaitFor());
- 	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -77,5 +70,10 @@ public class TextUpdate : MonoBehaviour {
 			duration -= delay;
 			yield return new WaitForSeconds(delay);
 		}
+	}
+	
+	void DecreaseDistance() {
+		double tempDist = Double.Parse(distance.text);
+		distance.text = (tempDist - 0.1).ToString();
 	}
 }
