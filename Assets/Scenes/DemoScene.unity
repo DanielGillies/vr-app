@@ -893,7 +893,7 @@ TextMesh:
   m_FontSize: 0
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: e1cb08a56fdd04f319bfac8e00d274ef, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
@@ -907,7 +907,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: e1cb08a56fdd04f319bfac8e00d274ef, type: 3}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1604,6 +1604,15 @@ Prefab:
       propertyPath: sceneNum
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 10207048, guid: cbddd791542ca42b1b3266ba66ea1600, type: 2}
+      propertyPath: m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: e1cb08a56fdd04f319bfac8e00d274ef,
+        type: 3}
+    - target: {fileID: 2382122, guid: cbddd791542ca42b1b3266ba66ea1600, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1cb08a56fdd04f319bfac8e00d274ef, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cbddd791542ca42b1b3266ba66ea1600, type: 2}
   m_IsPrefabParent: 0
