@@ -60,7 +60,7 @@ public class Teleport : MonoBehaviour, ICardboardGazeResponder
 		Renderer rend = GetComponent<Renderer> ();
 			Color color = rend.material.color;
 			if (gazedAt) {
-				color = Color.green;
+				// color = Color.green;
 				// CHECK IF IT IS A MENU ITEM OR THE BACK BUTTON FOR TRANSPARENCY
 				// if (rend.material.name.ToString() != "BackButton_M") {
 					// Debug.Log(rend.material.name.ToString());
@@ -69,7 +69,7 @@ public class Teleport : MonoBehaviour, ICardboardGazeResponder
 				rend.transform.localScale = largeThumb;
 			} else {
 				delay = Time.time + 2.0f;
-				color = Color.red;
+				color = Color.white;
 				color.a = 1f;
 				rend.transform.localScale = smallThumb;
 			}
